@@ -1,1 +1,6 @@
-
+body {
+    background-image: url("img/animahttps://www.bing.com/images/search?view=detailV2&ccid=cWjfMZlc&id=AA03F241E30272D592CFCCD4EAB66982F85DE65F&thid=OIP.cWjfMZlctpcTeLAm-lBq6gHaE8&mediaurl=https%3a%2f%2fwww.publicdomainpictures.net%2fpictures%2f40000%2fvelka%2fpink-clouds.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.7168df31995cb6971378b026fa506aea%3frik%3dX%252bZd%252bIJpturUzA%26pid%3dImgRaw%26r%3d0&exph=1280&expw=1920&q=Nubes+Rosas&FORM=IRPRST&ck=56A694C1DDC93DA7BF0061E9BC47778C&selectedIndex=1&itb=0l.jpg");
+    background-size: cover; /* This will make the image cover the entire background */
+    background-position: center; /* This will center the image */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+}
