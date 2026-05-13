@@ -1,9 +1,0 @@
-body {
-    background-color: hsla(300, 57%, 55%, 0.925);
-    background-image: url('tu-imagen.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 100px;
-    padding:100px;
-}
