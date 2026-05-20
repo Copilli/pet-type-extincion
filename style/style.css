@@ -1,7 +1,18 @@
 body {
     margin: 0;
     padding: 0;
-    
+    position: relative;
+    /* Background taken from information page */
+    background: url("../assets/natural.webp") center/cover fixed no-repeat;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: inherit;
+    filter: blur(14px);
+    z-index: -1;
 }
 
 .container {
@@ -15,6 +26,11 @@ body {
 .content {
     max-width: 800px;
     width: 100%;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(4px);
+    padding: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
 }
 
 .content h1 {
