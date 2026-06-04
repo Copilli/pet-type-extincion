@@ -18,7 +18,12 @@
         @media (max-width: 600px) {
             .form-embed iframe { height: 1600px; }
             .form-embed .frame { padding: 0 12px; }
+            /* On small screens hide embedded iframe and show a clear CTA instead */
+            .form-embed .iframe-wrap { display: none; }
+            .form-embed .mobile-fallback { display: block; text-align: center; }
+            .form-embed .mobile-fallback .open-btn { display: inline-block; padding: 14px 18px; font-size: 1.05rem; }
         }
+        .form-embed .mobile-fallback { display: none; }
     </style>
 </head>
 
@@ -66,10 +71,15 @@
             <h3>Dejanos tu opinion</h3>
             <div class="form-embed">
                 <div class="frame">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <div class="iframe-wrap">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    </div>
+                    <div class="mobile-fallback">
+                        <p style="margin:0 0 8px 0; color:#444;">El formulario no se muestra bien aquí.</p>
+                        <a class="open-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform" target="_blank" rel="noopener">Abrir formulario en nueva pestaña</a>
+                    </div>
                     <div class="caption">
-                        Si el formulario no carga correctamente en tu dispositivo, puedes
-                        <a class="open-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform" target="_blank" rel="noopener">abrirlo en una nueva pestaña</a>
+                        Si el formulario no carga correctamente en tu dispositivo, también puedes abrirlo en una nueva pestaña.
                     </div>
                 </div>
             </div>
