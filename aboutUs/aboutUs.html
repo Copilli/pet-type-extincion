@@ -9,6 +9,17 @@
     <title>Document</title>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="aboutUs.css">
+    <style>
+        .form-embed { width: 100%; display: flex; justify-content: center; margin: 20px 0; }
+        .form-embed .frame { width: 100%; max-width: 840px; box-sizing: border-box; }
+        .form-embed iframe { width: 100%; height: 1200px; border: 1px solid #e6e6e6; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .form-embed .caption { text-align: center; margin-top: 10px; font-size: 0.95rem; color: #666; }
+        .form-embed .open-btn { display: inline-block; margin-top:8px; padding:8px 14px; background:#007bff; color:#fff; border-radius:6px; text-decoration:none; }
+        @media (max-width: 600px) {
+            .form-embed iframe { height: 1600px; }
+            .form-embed .frame { padding: 0 12px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -40,8 +51,8 @@
     <div class="container">
         <div class="content">
             <h1>About Us</h1>
-            <p>Axolove es una aplicacion naturista que busca concientisar a los usuarios sobre la importancia del ajolote mexicano dandoles informacion sobre estos y la posibilidad de donar a distintos refugios para salvar a estos pequeños.</p>
-            <p>Nuestros inegrantes son </p>
+            <p>Axolove es una aplicacion natura que busca concientizar a los usuarios acerca de la importancia del ajolote mexicano dandoles informacion sobre estos y la posibilidad de donar a distintos refugios para salvar a estos pequeños.</p>
+            <p>Nuestros inetegrantes son </p>
             <ul>
                 <li>Bella</li>
             </ul>
@@ -53,68 +64,15 @@
             </ul>
 
             <h3>Dejanos tu opinion</h3>
-            <div class="form-container" style="width: 100%; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-sizing: border-box;">
-                <form id="opinionForm" method="POST" action="https://formspree.io/f/xyzgwpqk" style="display: flex; flex-direction: column; gap: 12px;">
-                    
-                    <div>
-                        <label for="name" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Nombre:</label>
-                        <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; appearance: none; -webkit-appearance: none;">
+            <div class="form-embed">
+                <div class="frame">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <div class="caption">
+                        Si el formulario no carga correctamente en tu dispositivo, puedes
+                        <a class="open-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform" target="_blank" rel="noopener">abrirlo en una nueva pestaña</a>
                     </div>
-
-                    <div>
-                        <label for="email" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; appearance: none; -webkit-appearance: none;">
-                    </div>
-
-                    <div>
-                        <label for="subject" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Asunto:</label>
-                        <input type="text" id="subject" name="subject" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; appearance: none; -webkit-appearance: none;">
-                    </div>
-
-                    <div>
-                        <label for="message" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Tu Opinión:</label>
-                        <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: Arial, sans-serif; box-sizing: border-box; appearance: none; -webkit-appearance: none; resize: vertical;"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="padding: 15px; font-size: 1rem; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; font-weight: bold; width: 100%;">
-                        Enviar Opinión
-                    </button>
-                </form>
-                <div id="formMessage" style="margin-top: 15px; padding: 12px; border-radius: 5px; display: none; text-align: center; font-weight: bold;"></div>
+                </div>
             </div>
-
-            <script>
-                document.getElementById('opinionForm').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    var formData = new FormData(this);
-                    var messageDiv = document.getElementById('formMessage');
-                    
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    }).then(response => {
-                        if (response.ok) {
-                            messageDiv.style.display = 'block';
-                            messageDiv.style.backgroundColor = '#d4edda';
-                            messageDiv.style.color = '#155724';
-                            messageDiv.textContent = '¡Gracias! Tu opinión ha sido enviada correctamente.';
-                            document.getElementById('opinionForm').reset();
-                            setTimeout(function() {
-                                messageDiv.style.display = 'none';
-                            }, 5000);
-                        }
-                    }).catch(error => {
-                        messageDiv.style.display = 'block';
-                        messageDiv.style.backgroundColor = '#f8d7da';
-                        messageDiv.style.color = '#721c24';
-                        messageDiv.textContent = 'Hubo un error al enviar tu opinión. Intenta de nuevo.';
-                    });
-                });
-            </script>
         </div>
     </div>
 
