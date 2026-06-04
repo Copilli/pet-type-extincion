@@ -53,18 +53,68 @@
             </ul>
 
             <h3>Dejanos tu opinion</h3>
-            <div class="form-container" style="width:100%; max-width:100%; margin:0; padding:0;">
-                <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform?embedded=true"
-                    style="width:100%; height:100vh; min-height:800px; border:0;"
-                    frameborder="0" marginheight="0" marginwidth="0" loading="lazy"
-                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups">Loading…</iframe>
-                <p style="margin-top: 20px; text-align: center;">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNCncd8oBsH7WeC14UG6OMTIFz-6bNAXSebXuBi0vQ0NHb4Q/viewform" target="_blank" class="btn btn-primary btn-sm">
-                        Abrir formulario en nueva pestaña
-                    </a>
-                </p>
+            <div class="form-container" style="width: 100%; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-sizing: border-box;">
+                <form id="opinionForm" method="POST" action="https://formspree.io/f/xyzgwpqk" style="display: flex; flex-direction: column; gap: 12px;">
+                    
+                    <div>
+                        <label for="name" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Nombre:</label>
+                        <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; -webkit-appearance: none;">
+                    </div>
+
+                    <div>
+                        <label for="email" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; -webkit-appearance: none;">
+                    </div>
+
+                    <div>
+                        <label for="subject" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Asunto:</label>
+                        <input type="text" id="subject" name="subject" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box; -webkit-appearance: none;">
+                    </div>
+
+                    <div>
+                        <label for="message" style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem;">Tu Opinión:</label>
+                        <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: Arial, sans-serif; box-sizing: border-box; -webkit-appearance: none; resize: vertical;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="padding: 15px; font-size: 1rem; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; font-weight: bold; width: 100%;">
+                        Enviar Opinión
+                    </button>
+                </form>
+                <div id="formMessage" style="margin-top: 15px; padding: 12px; border-radius: 5px; display: none; text-align: center; font-weight: bold;"></div>
             </div>
+
+            <script>
+                document.getElementById('opinionForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    var formData = new FormData(this);
+                    var messageDiv = document.getElementById('formMessage');
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            messageDiv.style.display = 'block';
+                            messageDiv.style.backgroundColor = '#d4edda';
+                            messageDiv.style.color = '#155724';
+                            messageDiv.textContent = '¡Gracias! Tu opinión ha sido enviada correctamente.';
+                            document.getElementById('opinionForm').reset();
+                            setTimeout(function() {
+                                messageDiv.style.display = 'none';
+                            }, 5000);
+                        }
+                    }).catch(error => {
+                        messageDiv.style.display = 'block';
+                        messageDiv.style.backgroundColor = '#f8d7da';
+                        messageDiv.style.color = '#721c24';
+                        messageDiv.textContent = 'Hubo un error al enviar tu opinión. Intenta de nuevo.';
+                    });
+                });
+            </script>
         </div>
     </div>
 
